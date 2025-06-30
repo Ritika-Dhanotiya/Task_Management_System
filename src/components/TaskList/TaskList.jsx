@@ -4,20 +4,20 @@ import NewTask from './NewTask'
 import CompleteTask from './CompleteTask'
 import FailedTask from './FailedTask'
 
-const TaskList = ({ data }) => {
+const TaskList = ({ data, onAccept, onComplete, onFail }) => {
   if (!data || !data.tasks) return null; // Prevent crash if data not ready
 
   return (
     <div
       id='tasklist'
-      className='h-[50%] overflow-x-auto flex items-center justify-start gap-5 flex-nowrap w-full py-1 mt-16'
+      className='flex flex-col sm:flex-row items-center justify-start gap-5 w-full py-1 mt-8'
     >
       {data.tasks.map((elem, idx) => {
         if (elem.active) {
-          return <AcceptTask key={idx} data={elem} />;
+          return <AcceptTask key={idx} data={elem} onComplete={() => onComplete && onComplete(idx)} onFail={() => onFail && onFail(idx)} />;
         }
         if (elem.newTask) {
-          return <NewTask key={idx} data={elem} />;
+          return <NewTask key={idx} data={elem} onAccept={() => onAccept && onAccept(idx)} />;
         }
         if (elem.completed) {
           return <CompleteTask key={idx} data={elem} />;

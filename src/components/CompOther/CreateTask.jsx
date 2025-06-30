@@ -49,58 +49,70 @@ const CreateTask = () => {
   };
 
   return (
-    <div className='p-5 bg-[#1c1c1c] mt-5 rounded'>
-      <form onSubmit={submitHandler} className='flex flex-wrap w-full items-start justify-between'>
-        <div className='w-1/2'>
+    <div className='p-3 sm:p-5 bg-[#1c1c1c] mt-5 rounded flex justify-center'>
+      <form onSubmit={submitHandler} className='w-full max-w-2xl px-2 flex flex-col sm:flex-row gap-3'>
+        <div className='w-full sm:w-1/2 flex flex-col gap-3'>
           <div>
-            <h3 className='text-sm text-gray-300 mb-0.5'>Task Title</h3>
+            <h3 className='text-sm text-gray-300 mb-1'>Task Title</h3>
             <input
               value={taskTitle}
               onChange={(e) => setTaskTitle(e.target.value)}
-              className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+              className='text-sm py-2 px-3 w-full rounded outline-none bg-transparent border border-gray-400 mb-1 text-white'
               type='text'
               placeholder='Make a UI design'
             />
           </div>
           <div>
-            <h3 className='text-sm text-gray-300 mb-0.5'>Date</h3>
+            <h3 className='text-sm text-gray-300 mb-1'>Date</h3>
             <input
               value={taskDate}
               onChange={(e) => setTaskDate(e.target.value)}
-              className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+              className='text-sm py-2 px-3 w-full rounded outline-none bg-transparent border border-gray-400 mb-1 text-white'
               type='date'
             />
           </div>
           <div>
-            <h3 className='text-sm text-gray-300 mb-0.5'>Asign to</h3>
+            <h3 className='text-sm text-gray-300 mb-1'>Asign to</h3>
             <input
               value={asignTo}
               onChange={(e) => setAsignTo(e.target.value)}
-              className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+              className='text-sm py-2 px-3 w-full rounded outline-none bg-transparent border border-gray-400 mb-1 text-white'
               type='text'
               placeholder='employee name'
             />
           </div>
           <div>
-            <h3 className='text-sm text-gray-300 mb-0.5'>Category</h3>
+            <h3 className='text-sm text-gray-300 mb-1'>Category</h3>
             <input
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4'
+              className='text-sm py-2 px-3 w-full rounded outline-none bg-transparent border border-gray-400 mb-1 text-white'
               type='text'
               placeholder='design, dev, etc'
             />
           </div>
+          {/* On mobile, show description and button below all fields */}
+          <div className='block sm:hidden'>
+            <h3 className='text-sm text-gray-300 mb-1'>Description</h3>
+            <textarea
+              value={taskDescription}
+              onChange={(e) => setTaskDescription(e.target.value)}
+              className='w-full h-32 text-sm py-2 px-3 rounded outline-none bg-transparent border border-gray-400 text-white'
+            ></textarea>
+            <button className='bg-emerald-500 py-3 hover:bg-emerald-600 px-5 rounded text-sm mt-2 w-full font-semibold'>
+              Create Task
+            </button>
+          </div>
         </div>
-
-        <div className='w-2/5 flex flex-col items-start'>
-          <h3 className='text-sm text-gray-300 mb-0.5'>Description</h3>
+        {/* On desktop, show description and button in right column */}
+        <div className='hidden sm:flex flex-col items-start w-2/5'>
+          <h3 className='text-sm text-gray-300 mb-1'>Description</h3>
           <textarea
             value={taskDescription}
             onChange={(e) => setTaskDescription(e.target.value)}
-            className='w-full h-44 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400'
+            className='w-full h-32 text-sm py-2 px-3 rounded outline-none bg-transparent border border-gray-400 text-white'
           ></textarea>
-          <button className='bg-emerald-500 py-3 hover:bg-emerald-600 px-5 rounded text-sm mt-4 w-full'>
+          <button className='bg-emerald-500 py-3 hover:bg-emerald-600 px-5 rounded text-sm mt-4 w-full font-semibold'>
             Create Task
           </button>
         </div>
